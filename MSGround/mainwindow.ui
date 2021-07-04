@@ -1,0 +1,157 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<ui version="4.0">
+ <class>MainWindow</class>
+ <widget class="QMainWindow" name="MainWindow">
+  <property name="geometry">
+   <rect>
+    <x>0</x>
+    <y>0</y>
+    <width>800</width>
+    <height>678</height>
+   </rect>
+  </property>
+  <property name="windowTitle">
+   <string>MainWindow</string>
+  </property>
+  <widget class="QWidget" name="centralwidget">
+   <layout class="QVBoxLayout" name="verticalLayout_2">
+    <property name="sizeConstraint">
+     <enum>QLayout::SetDefaultConstraint</enum>
+    </property>
+    <item>
+     <layout class="QVBoxLayout" name="verticalLayout" stretch="4,1">
+      <property name="spacing">
+       <number>6</number>
+      </property>
+      <item>
+       <layout class="QHBoxLayout" name="horizontalLayout_2" stretch="1,1,1">
+        <item>
+         <widget class="MapZone" name="MapZone_wdg" native="true">
+          <property name="sizePolicy">
+           <sizepolicy hsizetype="Minimum" vsizetype="Minimum">
+            <horstretch>0</horstretch>
+            <verstretch>0</verstretch>
+           </sizepolicy>
+          </property>
+         </widget>
+        </item>
+        <item>
+         <widget class="PlotZone" name="PlotZone_wdg" native="true"/>
+        </item>
+        <item>
+         <widget class="ToolZone" name="ToolZone_wdg" native="true"/>
+        </item>
+       </layout>
+      </item>
+      <item>
+       <layout class="QHBoxLayout" name="horizontalLayout">
+        <item>
+         <widget class="MSButton" name="MSButton_wdg" native="true"/>
+        </item>
+        <item>
+         <widget class="ActionZone" name="widget" native="true"/>
+        </item>
+        <item>
+         <widget class="TimeZone" name="TimeZone_wdg" native="true"/>
+        </item>
+       </layout>
+      </item>
+     </layout>
+    </item>
+   </layout>
+  </widget>
+  <widget class="QMenuBar" name="menubar">
+   <property name="geometry">
+    <rect>
+     <x>0</x>
+     <y>0</y>
+     <width>800</width>
+     <height>20</height>
+    </rect>
+   </property>
+   <widget class="QMenu" name="menuFile">
+    <property name="title">
+     <string>File</string>
+    </property>
+   </widget>
+   <widget class="QMenu" name="menuEdit">
+    <property name="title">
+     <string>Edit</string>
+    </property>
+   </widget>
+   <widget class="QMenu" name="menuDebug">
+    <property name="title">
+     <string>Debug</string>
+    </property>
+    <widget class="QMenu" name="menuTimeZone">
+     <property name="title">
+      <string>TimeZone</string>
+     </property>
+     <addaction name="actionStart_chrono"/>
+     <addaction name="actionStop_chrono"/>
+     <addaction name="actionReset_chrono"/>
+    </widget>
+    <addaction name="menuTimeZone"/>
+   </widget>
+   <addaction name="menuFile"/>
+   <addaction name="menuEdit"/>
+   <addaction name="menuDebug"/>
+  </widget>
+  <widget class="QStatusBar" name="statusbar"/>
+  <action name="actionStart_chrono">
+   <property name="text">
+    <string>Start chrono</string>
+   </property>
+  </action>
+  <action name="actionStop_chrono">
+   <property name="text">
+    <string>Stop chrono</string>
+   </property>
+  </action>
+  <action name="actionReset_chrono">
+   <property name="text">
+    <string>Reset chrono</string>
+   </property>
+  </action>
+ </widget>
+ <customwidgets>
+  <customwidget>
+   <class>TimeZone</class>
+   <extends>QWidget</extends>
+   <header>TimeZone.h</header>
+   <container>1</container>
+  </customwidget>
+  <customwidget>
+   <class>MSButton</class>
+   <extends>QWidget</extends>
+   <header>MSButton.h</header>
+   <container>1</container>
+  </customwidget>
+  <customwidget>
+   <class>ToolZone</class>
+   <extends>QWidget</extends>
+   <header>ToolZone.h</header>
+   <container>1</container>
+  </customwidget>
+  <customwidget>
+   <class>PlotZone</class>
+   <extends>QWidget</extends>
+   <header>PlotZone.h</header>
+   <container>1</container>
+  </customwidget>
+  <customwidget>
+   <class>ActionZone</class>
+   <extends>QWidget</extends>
+   <header>ActionZone.h</header>
+   <container>1</container>
+  </customwidget>
+  <customwidget>
+   <class>MapZone</class>
+   <extends>QWidget</extends>
+   <header>MapZone.h</header>
+   <container>1</container>
+  </customwidget>
+ </customwidgets>
+ <resources/>
+ <connections/>
+</ui>
