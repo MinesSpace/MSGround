@@ -14,7 +14,12 @@ PlotZone::~PlotZone()
     delete ui;
 }
 
-Plot* PlotZone::plot()
+Plot* PlotZone::plot1()
 {
     return ui->plot;
+}
+
+Plot* PlotZone::plot2()
+{
+    return ui->plot2;
 }

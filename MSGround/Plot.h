@@ -15,6 +15,15 @@
 
 QT_CHARTS_USE_NAMESPACE
 
+namespace
+{
+    Q_GLOBAL_STATIC_WITH_ARGS(const QString, SPEED_TTTLE, ("Speed"));
+    Q_GLOBAL_STATIC_WITH_ARGS(const QString, ALTITUDE_TITLE, ("Altitude"));
+    Q_GLOBAL_STATIC_WITH_ARGS(const QString, ACCELERO_X_TITLE, ("Accelero_X"));
+    Q_GLOBAL_STATIC_WITH_ARGS(const QString, ACCELERO_Y_TITLE, ("Accelero_Y"));
+    Q_GLOBAL_STATIC_WITH_ARGS(const QString, ACCELERO_Z_TITLE, ("Accelero_Z"));
+}
+
 enum Curve
 {
     SPEED,
@@ -44,10 +53,12 @@ public:
     explicit Plot(QWidget *parent = nullptr);
     ~Plot();
 
-    void addLinePlot(QString name);
+    //void addLinePlot(QString name);
     void appendData(int index, QPointF point);
 
     void newCommand(QString command);
+
+    void enableCurve(Curve curve);
 
 private:
     Ui::Plot *ui;

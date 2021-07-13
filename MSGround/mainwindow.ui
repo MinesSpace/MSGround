@@ -19,7 +19,7 @@
      <enum>QLayout::SetDefaultConstraint</enum>
     </property>
     <item>
-     <layout class="QVBoxLayout" name="verticalLayout" stretch="4,1">
+     <layout class="QVBoxLayout" name="verticalLayout" stretch="10,1">
       <property name="spacing">
        <number>6</number>
       </property>
@@ -44,15 +44,36 @@
        </layout>
       </item>
       <item>
-       <layout class="QHBoxLayout" name="horizontalLayout">
+       <layout class="QHBoxLayout" name="horizontalLayout" stretch="1,3,1">
         <item>
-         <widget class="MSButton" name="MSButton_wdg" native="true"/>
+         <widget class="MSButton" name="MSButton_wdg" native="true">
+          <property name="sizePolicy">
+           <sizepolicy hsizetype="Maximum" vsizetype="Preferred">
+            <horstretch>0</horstretch>
+            <verstretch>0</verstretch>
+           </sizepolicy>
+          </property>
+         </widget>
         </item>
         <item>
-         <widget class="ActionZone" name="widget" native="true"/>
+         <widget class="ActionZone" name="ActionZone_wdg" native="true">
+          <property name="sizePolicy">
+           <sizepolicy hsizetype="Minimum" vsizetype="Preferred">
+            <horstretch>0</horstretch>
+            <verstretch>0</verstretch>
+           </sizepolicy>
+          </property>
+         </widget>
         </item>
         <item>
-         <widget class="TimeZone" name="TimeZone_wdg" native="true"/>
+         <widget class="TimeZone" name="TimeZone_wdg" native="true">
+          <property name="sizePolicy">
+           <sizepolicy hsizetype="Maximum" vsizetype="Preferred">
+            <horstretch>0</horstretch>
+            <verstretch>0</verstretch>
+           </sizepolicy>
+          </property>
+         </widget>
         </item>
        </layout>
       </item>
@@ -91,7 +112,25 @@
      <addaction name="actionStop_chrono"/>
      <addaction name="actionReset_chrono"/>
     </widget>
+    <widget class="QMenu" name="menuMapZone">
+     <property name="title">
+      <string>MapZone</string>
+     </property>
+     <addaction name="actionGo_to_Australia"/>
+     <addaction name="actionGo_to_troducdumonde"/>
+     <addaction name="actionGo_to_plusBelleVilleDuMonde"/>
+    </widget>
+    <widget class="QMenu" name="menuActionZone">
+     <property name="title">
+      <string>ActionZone</string>
+     </property>
+     <addaction name="actionNext_Succes"/>
+     <addaction name="actionNext_Fail"/>
+     <addaction name="actionReset"/>
+    </widget>
     <addaction name="menuTimeZone"/>
+    <addaction name="menuMapZone"/>
+    <addaction name="menuActionZone"/>
    </widget>
    <addaction name="menuFile"/>
    <addaction name="menuEdit"/>
@@ -111,6 +150,39 @@
   <action name="actionReset_chrono">
    <property name="text">
     <string>Reset chrono</string>
+   </property>
+  </action>
+  <action name="actionGo_to_Australia">
+   <property name="text">
+    <string>Go to Australia</string>
+   </property>
+  </action>
+  <action name="actionGo_to_troducdumonde">
+   <property name="text">
+    <string>Go to troducdumonde</string>
+   </property>
+  </action>
+  <action name="actionGo_to_plusBelleVilleDuMonde">
+   <property name="text">
+    <string>Go to plusBelleVilleDuMonde</string>
+   </property>
+  </action>
+  <action name="actionNext_Succes">
+   <property name="text">
+    <string>Next Succes</string>
+   </property>
+   <property name="shortcut">
+    <string>Ctrl+T</string>
+   </property>
+  </action>
+  <action name="actionNext_Fail">
+   <property name="text">
+    <string>Next Fail</string>
+   </property>
+  </action>
+  <action name="actionReset">
+   <property name="text">
+    <string>Reset</string>
    </property>
   </action>
  </widget>

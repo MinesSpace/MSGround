@@ -24,22 +24,7 @@
     </layout>
    </item>
    <item>
-    <layout class="QHBoxLayout" name="horizontalLayout">
-     <item>
-      <layout class="QHBoxLayout" name="horizontalLayout_2">
-       <item>
-        <widget class="QGroupBox" name="groupBox">
-         <property name="title">
-          <string>GroupBox</string>
-         </property>
-        </widget>
-       </item>
-       <item>
-        <widget class="QGraphicsView" name="graphicsView"/>
-       </item>
-      </layout>
-     </item>
-    </layout>
+    <widget class="Plot" name="plot2" native="true"/>
    </item>
   </layout>
  </widget>

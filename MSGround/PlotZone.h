@@ -16,7 +16,8 @@ public:
     explicit PlotZone(QWidget *parent = nullptr);
     ~PlotZone();
 
-    Plot* plot();
+    Plot* plot1();
+    Plot* plot2();
 
 private:
     Ui::PlotZone *ui;

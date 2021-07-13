@@ -22,6 +22,18 @@ private slots:
 
     void on_actionReset_chrono_triggered();
 
+    void on_actionGo_to_Australia_triggered();
+
+    void on_actionGo_to_troducdumonde_triggered();
+
+    void on_actionGo_to_plusBelleVilleDuMonde_triggered();
+
+    void on_actionNext_Succes_triggered();
+
+    void on_actionNext_Fail_triggered();
+
+    void on_actionReset_triggered();
+
 private:
     Ui::MainWindow *ui;
 };
