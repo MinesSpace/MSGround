@@ -3,6 +3,7 @@
 
 #include <QVector>
 #include <QPointF>
+#include <QTextStream>
 
 struct Gps_coord
 {
@@ -40,6 +41,7 @@ class DataSave
 public:
     DataSave();
 
+    void initFile(bool default_path);
     void append(Gps_coord gps_coord, Sensor_measure sensor_measure);
 
     Gps_coord getGps(int index);
@@ -49,6 +51,8 @@ private:
 
     QVector<Gps_coord> _gps_coord;
     QVector<Sensor_measure> _sensor_mesure;
+
+    QTextStream* txtStream;
 
 };
 
