@@ -29,7 +29,6 @@ MainWindow::MainWindow(QWidget *parent)
     DataSave datasave;
 
     datasave.initFile(true);
-
 }
 
 MainWindow::~MainWindow()

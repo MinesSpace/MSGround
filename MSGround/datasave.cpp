@@ -1,4 +1,4 @@
-﻿#include "Datasave.h"
+#include "Datasave.h"
 
 #include <QTime>
 #include <QFileDialog>
