@@ -2,6 +2,8 @@
 #include "ui_mainwindow.h"
 #include <QDesktopServices>
 
+#include "datasave.h"
+
 MainWindow::MainWindow(QWidget *parent)
     : QMainWindow(parent)
     , ui(new Ui::MainWindow)
@@ -23,6 +25,11 @@ MainWindow::MainWindow(QWidget *parent)
 
     //QString link = "https://www.google.fr/maps/@48.8556087,2.3324398,737m/data=!3m1!1e3";
     //QDesktopServices::openUrl(QUrl(link));
+
+    DataSave datasave;
+
+    datasave.initFile(true);
+
 }
 
 MainWindow::~MainWindow()
