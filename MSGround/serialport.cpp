@@ -93,8 +93,8 @@ void SerialPort::settingUpdate(SerialPort::Settings settingPort)
 
 void SerialPort::readingData() {
 
-    if(m_serial->bytesAvailable() >= 62) {
-        QByteArray data = m_serial->read(62);
+    if(m_serial->bytesAvailable() >= 65) {
+        QByteArray data = m_serial->read(65);
 
         emit dataBrutEmit(true, data);
         qDebug() << "[" << QDateTime::currentDateTime().toString("dd-MM-yyyy_HH.mm.ss") << "][SERIAL] Data received : " << Qt::hex << data.toHex();
@@ -150,111 +150,114 @@ void SerialPort::run() {
 
 void SerialPort::dataConvert(const QByteArray byteArr){
 
-    //GPS
-
-    m_data.gpsVar.latitude_mdeg  = ( (byteArr[1] << 24)
-        + (byteArr[2] << 16)
-        + (byteArr[3] << 8)
-        + (byteArr[4] ) );
-
-    m_data.gpsVar.longitude_mdeg = ( (byteArr[5] << 24)
-        + (byteArr[6] << 16)
-        + (byteArr[7] << 8)
-        + (byteArr[8] ) );
-
-    m_data.gpsVar.altitulde_mm = ( (byteArr[9] << 24)
-        + (byteArr[10] << 16)
-        + (byteArr[11] << 8)
-        + (byteArr[12] ) );
-
-    m_data.gpsVar.hourGPS = byteArr[13];
-    m_data.gpsVar.minuteGPS = byteArr[14];
-    m_data.gpsVar.secondGPS = byteArr[15];
-    m_data.gpsVar.gpsRun = byteArr[16];
+    uint8_t test[4];
 
     //BMP280
+    test[0] = byteArr[0];
+    test[1] = byteArr[1];
+    test[2] = byteArr[2];
+    test[3] = byteArr[3];
+    memcpy(&data.bmp280Var.temp, &test, 4);
 
-    int bmp280Temp =  ( (byteArr[17] << 24)
-         + (byteArr[18] << 16)
-         + (byteArr[19] << 8)
-         + (byteArr[20] ) );
+    test[0] = byteArr[4];
+    test[1] = byteArr[5];
+    test[2] = byteArr[6];
+    test[3] = byteArr[7];
+    memcpy(&data.bmp280Var.pres, &test, 4);
 
-    m_data.bmp280Var.temp = (float) bmp280Temp / 1000.000;
+    data.bmp280Var.bmp280Run = byteArr[8];
 
-    int bmp280Pres =  ( (byteArr[21] << 24)
-          + (byteArr[22] << 16)
-          + (byteArr[23] << 8)
-          + (byteArr[24] ) );
+     //DS18B20
 
-    m_data.bmp280Var.pres = (float) bmp280Pres / 1000.000;
+    test[0] = byteArr[9];
+    test[1] = byteArr[10];
+    test[2] = byteArr[11];
+    test[3] = byteArr[12];
+    memcpy(&data.ds18b20Var.ds18B20Run, &test, 4);
 
-    m_data.bmp280Var.bmp280Run = byteArr[25];
+    data.ds18b20Var.ds18B20Run = byteArr[13];
 
-    //DS18B20
+     //DS3231S
 
-    int ds18b20Temp =  ( (byteArr[26] << 24)
-          + (byteArr[27] << 16)
-          + (byteArr[28] << 8)
-          + (byteArr[29] ) );
+    data.ds3231Var.hourRTC = byteArr[14];
+    data.ds3231Var.minuteRTC = byteArr[15];
+    data.ds3231Var.secondRTC = byteArr[16];
 
-    m_data.ds18b20Var.ds18B20Run = (float) ds18b20Temp / 1000.000 ;
+    data.ds3231Var.ds3231sRun = byteArr[17];
 
     //MPU6050
 
-    int gyroX = ( (byteArr[30] << 24)
-          + (byteArr[31] << 16)
-          + (byteArr[32] << 8)
-          + (byteArr[33] ) );
+    test[0] = byteArr[18];
+    test[1] = byteArr[19];
+    test[2] = byteArr[20];
+    test[3] = byteArr[21];
+    memcpy(&data.mpu6050Var.gyroX, &test, 4);
 
-    m_data.mpu6050Var.gyroX = (float) gyroX / 1000.000;
+    test[0] = byteArr[22];
+    test[1] = byteArr[23];
+    test[2] = byteArr[24];
+    test[3] = byteArr[25];
+    memcpy(&data.mpu6050Var.gyroY, &test, 4);
 
-    int gyroY = ( (byteArr[34] << 24)
-          + (byteArr[35] << 16)
-          + (byteArr[36] << 8)
-          + (byteArr[37] ) );
+    test[0] = byteArr[26];
+    test[1] = byteArr[27];
+    test[2] = byteArr[28];
+    test[3] = byteArr[29];
+    memcpy(&data.mpu6050Var.gyroZ, &test, 4);
 
-    m_data.mpu6050Var.gyroY = (float) gyroY / 1000.000;
+    test[0] = byteArr[30];
+    test[1] = byteArr[31];
+    test[2] = byteArr[32];
+    test[3] = byteArr[33];
+    memcpy(&data.mpu6050Var.AccX, &test, 4);
 
-    int gyroZ = ( (byteArr[38] << 24)
-           + (byteArr[39] << 16)
-           + (byteArr[40] << 8)
-           + (byteArr[41] ) );
+    test[0] = byteArr[34];
+    test[1] = byteArr[35];
+    test[2] = byteArr[36];
+    test[3] = byteArr[37];
+    memcpy(&data.mpu6050Var.AccY, &test, 4);
 
-    m_data.mpu6050Var.gyroY = (float) gyroZ / 1000.000;
+    test[0] = byteArr[38];
+    test[1] = byteArr[39];
+    test[2] = byteArr[40];
+    test[3] = byteArr[41];
+    memcpy(&data.mpu6050Var.AccZ, &test, 4);
 
-    int AccX  = ( (byteArr[42] << 24)
-            + (byteArr[43] << 16)
-            + (byteArr[44] << 8)
-            + (byteArr[45] ) );
-
-    m_data.mpu6050Var.AccX  = (float) AccX  / 1000.000;
-
-    int AccY  = ( (byteArr[46] << 24)
-            + (byteArr[47] << 16)
-            + (byteArr[48] << 8)
-            + (byteArr[49] ) );
-
-    m_data.mpu6050Var.AccY  = (float) AccY / 1000.000;
-
-    int AccZ  = ( (byteArr[50] << 24)
-            + (byteArr[51] << 16)
-            + (byteArr[52] << 8)
-            + (byteArr[53] ) );
-
-    m_data.mpu6050Var.AccZ  = (float) AccZ / 1000.000;
-
-    m_data.mpu6050Var.mpu6050Run = byteArr[54];
-
-    //DS3231S
-
-    m_data.ds3231Var.secondRTC = byteArr[55];
-    m_data.ds3231Var.minuteRTC = byteArr[56];
-    m_data.ds3231Var.hourRTC = byteArr[57];
-    m_data.ds3231Var.ds3231sRun = byteArr[58];
+    data.mpu6050Var.mpu6050Run = byteArr[42];
 
     //SEQ
 
-    m_data.seqMes = byteArr[59];
+    data.seqMesPhase = byteArr[43];
+    data.seqMesMotor = byteArr[44];
+
+    //GPS
+
+    data.gpsVar.latitude_mdeg  = ( (byteArr[45] << 24)
+        + (byteArr[46] << 16)
+        + (byteArr[47] << 8)
+        + (byteArr[48] ) );
+
+    data.gpsVar.longitude_mdeg = ( (byteArr[49] << 24)
+        + (byteArr[50] << 16)
+        + (byteArr[51] << 8)
+        + (byteArr[52] ) );
+
+    data.gpsVar.altitulde_mm = ( (byteArr[53] << 24)
+        + (byteArr[54] << 16)
+        + (byteArr[55] << 8)
+        + (byteArr[56] ) );
+
+    data.gpsVar.hourGPS = byteArr[57];
+    m_data.gpsVar.minuteGPS = byteArr[58];
+    m_data.gpsVar.secondGPS = byteArr[59];
+    m_data.gpsVar.gpsRun = byteArr[60];
+
+    test[0] = byteArr[61];
+    test[1] = byteArr[62];
+    test[2] = byteArr[63];
+    test[3] = byteArr[64];
+
+    memcpy(&data.RSSI, &test, 4);
 
     emit dataEmit(m_data);
 

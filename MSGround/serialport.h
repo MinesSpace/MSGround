@@ -83,7 +83,10 @@ public:
         Ds3231 ds3231Var;
         Mpu6050 mpu6050Var;
 
-        uint8_t seqMes = 0;
+        uint8_t seqMesPhase = 0;
+        uint8_t seqMesMotor = 0;
+
+        float RSSI = 0;
 
     }AllData;
 
